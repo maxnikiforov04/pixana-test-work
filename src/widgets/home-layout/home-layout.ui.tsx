@@ -76,7 +76,7 @@ export function HomeLayout(props: Props) {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={{ ...style, width:600}}>
+                    <Box sx={{ ...style, width:400}}>
                         <MainTaskForm/>
                     </Box>
                 </Modal>

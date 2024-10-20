@@ -106,7 +106,7 @@ export default function Home() {
                                     aria-describedby="modal-modal-description"
                                     disableEnforceFocus
                                 >
-                                    <Box sx={{ ...style, width: 600 }}>
+                                    <Box sx={{ ...style, width: 400 }}>
                                         <EditTaskForm taskId={currentTaskId} />
                                     </Box>
                                 </Modal>
@@ -192,7 +192,7 @@ export default function Home() {
                                 aria-labelledby="modal-modal-title"
                                 aria-describedby="modal-modal-description"
                             >
-                                <Box sx={{ ...style, width: 600 }}>
+                                <Box sx={{ ...style, width: 400 }}>
                                     <MainTaskForm taskId={currentTaskId} />
                                 </Box>
                             </Modal>
