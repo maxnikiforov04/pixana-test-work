@@ -13,6 +13,7 @@ export type Task ={
 
 export type State ={
     tasks: Task[];
+    isEditFormOpen: boolean;
 }
 
 export type Actions = {
@@ -23,4 +24,6 @@ export type Actions = {
     updateTask: (taskId:string,updatedFields:Partial<Task>) => void;
     updateMicroTask: (taskId:string,microTaskId:string,updatedFields:Partial<MicroTask>) => void;
     removeTask: (id: string) => void;
+    openEditForm: () => void;
+    closeEditForm: () => void;
 }

@@ -169,7 +169,7 @@ export default function Home() {
                                             aria-describedby="modal-modal-description"
                                             disableEnforceFocus
                                         >
-                                            <Box sx={{ ...style, width: 600 }}>
+                                            <Box sx={{ ...style, width: 400 }}>
                                                 <EditTaskForm taskId={task.id} microTaskId={currentMicroTaskId} />
                                             </Box>
                                         </Modal>

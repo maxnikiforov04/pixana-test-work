@@ -5,6 +5,9 @@ import {createJSONStorage, persist} from "zustand/middleware";
 
 export const useTaskStore = create<State & Actions>()(persist(
     (set) => ({
+        isEditFormOpen: false,
+        openEditForm: () => set({ isEditFormOpen: true }),
+        closeEditForm: () => set({ isEditFormOpen: false }),
         tasks: [],
         addTask: (title: string) => set((state) => ({
             tasks: [

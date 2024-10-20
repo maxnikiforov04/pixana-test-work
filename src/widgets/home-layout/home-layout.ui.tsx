@@ -3,8 +3,6 @@ import {ReactNode, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
@@ -44,14 +42,6 @@ export function HomeLayout(props: Props) {
                 position="fixed"
             >
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography variant="h6" noWrap component="div" sx={{fontSize:20,display:"flex",justifyContent:"center",justifyItems:"center",alignItems:"center"}}>
                         Создать задачу
                         <Box display="flex" justifyContent="center" alignItems="center"

@@ -29,13 +29,16 @@ export function EditTaskForm({taskId,microTaskId}: EditTaskProps) {
     });
     const updateTask = useTaskStore(state => state.updateTask)
     const updateMicroTask = useTaskStore(state => state.updateMicroTask)
+    const closeEditForm = useTaskStore((state) => state.closeEditForm);
     const onSubmit = (data: FormData) => {
         console.log(taskId);
         if (microTaskId){
             updateMicroTask(taskId,microTaskId,{name:data.title})
         }else {
             updateTask(taskId,{title:data.title});
+
         }
+        closeEditForm()
     };
     return(
         <form onSubmit={handleSubmit(onSubmit)} >
