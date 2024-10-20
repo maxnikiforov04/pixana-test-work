@@ -1,16 +1,12 @@
 'use client'
-import * as React from 'react';
 import {ReactNode, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import {SidebarItem} from "@features/sidebar-item";
 import AddIcon from '@mui/icons-material/Add';
 import {Modal} from "@mui/material";
 import {MainTaskForm} from "@widgets/task-form";
@@ -22,26 +18,11 @@ interface Props {
     children:ReactNode
 }
 export function HomeLayout(props: Props) {
-    const { window,children } = props;
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
+    const { children } = props;
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const handleDrawerClose = () => {
-        setIsClosing(true);
-        setMobileOpen(false);
-    };
 
-    const handleDrawerTransitionEnd = () => {
-        setIsClosing(false);
-    };
-
-    const handleDrawerToggle = () => {
-        if (!isClosing) {
-            setMobileOpen(!mobileOpen);
-        }
-    };
     const style = {
         position: 'absolute',
         top: '50%',
@@ -55,37 +36,18 @@ export function HomeLayout(props: Props) {
         px: 4,
         pb: 3,
     };
-    const drawer = (
-        <Box sx={{fontSize:20,fontWeight: 'medium'}}>
-            <List>
-                <Box onClick={()=>{
-                    console.log('sdfsdf')}}
-                >
-                    <SidebarItem name="Все"/>
-                </Box>
-
-                <SidebarItem name="Выполненные"/>
-            </List>
-        </Box>
-    );
-    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <Box sx={{ display: 'flex', fontSize:34,fontWeight: 'medium'}}>
             <CssBaseline />
             <AppBar
                 position="fixed"
-                sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
-                }}
             >
                 <Toolbar>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         edge="start"
-                        onClick={handleDrawerToggle}
                         sx={{ mr: 2, display: { sm: 'none' } }}
                     >
                         <MenuIcon />
@@ -103,39 +65,6 @@ export function HomeLayout(props: Props) {
                 </Toolbar>
             </AppBar>
             <Box
-                component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-                aria-label="mailbox folders"
-            >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onTransitionEnd={handleDrawerTransitionEnd}
-                    onClose={handleDrawerClose}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                    open
-                >
-                    {drawer}
-                </Drawer>
-            </Box>
-            <Box
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
@@ -147,7 +76,7 @@ export function HomeLayout(props: Props) {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={{ ...style, width: 600}}>
+                    <Box sx={{ ...style, width:600}}>
                         <MainTaskForm/>
                     </Box>
                 </Modal>

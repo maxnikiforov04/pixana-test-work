@@ -2,18 +2,21 @@
 import { z } from 'zod';
 import Box from "@mui/material/Box";
 import {Button, TextField} from "@mui/material";
+import * as React from "react";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useTaskStore} from "@shared/lib/zustand";
 import {MainFormSchema} from "@entities/zod";
 import Typography from "@mui/material/Typography";
 
-interface TaskFormProps {
-    taskId?:string
+interface EditTaskProps {
+    taskId:string
+    microTaskId?:string
 }
 
-export function MainTaskForm({taskId}: TaskFormProps) {
+export function EditTaskForm({taskId,microTaskId}: EditTaskProps) {
     type FormData = z.infer<typeof MainFormSchema>;
+
     const {
         register,
         handleSubmit,
@@ -24,16 +27,14 @@ export function MainTaskForm({taskId}: TaskFormProps) {
             title: '',
         },
     });
-    const createTask = useTaskStore(state => state.addTask)
-    const addMicroTask = useTaskStore(state => state.addMicroTask)
+    const updateTask = useTaskStore(state => state.updateTask)
+    const updateMicroTask = useTaskStore(state => state.updateMicroTask)
     const onSubmit = (data: FormData) => {
         console.log(taskId);
-        if (taskId){
-            addMicroTask(taskId,data.title)
-            console.log(data.title)
-        }else{
-            createTask(data.title)
-            console.log("моча")
+        if (microTaskId){
+            updateMicroTask(taskId,microTaskId,{name:data.title})
+        }else {
+            updateTask(taskId,{title:data.title});
         }
     };
     return(
@@ -49,7 +50,7 @@ export function MainTaskForm({taskId}: TaskFormProps) {
             <Box display="flex" justifyContent="right" mt="3rem">
                 <Button variant="contained" type="submit">
                     <Typography sx={{fontSize:20}}>
-                        Создать
+                        Редактировать
                     </Typography>
                 </Button>
             </Box>
