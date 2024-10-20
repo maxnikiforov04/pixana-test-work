@@ -5,7 +5,7 @@ import {Button, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useTaskStore} from "@shared/lib/zustand";
-import {MainFormSchema} from "@entities/zod";
+import {MainFormSchema} from "../../entities/zod";
 import Typography from "@mui/material/Typography";
 
 interface TaskFormProps {

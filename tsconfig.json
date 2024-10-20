@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": "src", // Adjust based on your project structure
     "plugins": [
       {
         "name": "next"
@@ -20,7 +21,10 @@
     "paths": {
       "@*": [
         "src/*"
-      ]
+      ],
+      "@widgets/*": ["widgets/*"],
+      "@shared/*": ["shared/*"],
+      "@app/*": ["app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
